@@ -3,7 +3,7 @@ class Enemy1 {
         this.ctx = ctx
         this.enemy1Pos = { x: posX, y: posY }
         this.enemy1Size = { w: width, h: height }
-        this.enemy1Baseline = undefined
+
         this.enemy1Speed = 1
         this.imageInstance = undefined
         this.init()

@@ -3,11 +3,12 @@ class Player {
         this.ctx = ctx
         this.playerPos = { x: posX, y: posY }
         this.playerSize = { w: width, h: height }
-        this.playerBaseline = 600
-        this.playerSpeed = { x: 10, y: 1 }
+
+        this.playerSpeed = { x: 25, y: 0 }
         this.playerGravity = 0.5
         this.playerLifeCounter = 1000
         this.imageInstance = undefined
+        this.playerBaseline = undefined
 
         this.init()
     }
@@ -37,64 +38,47 @@ class Player {
     }
 
     moveLeft() {
-        if (this.playerPos.y !== this.playerBaseline) {
-            this.playerPos.x -= this.playerSpeed.x * this.playerGravity
-        } else { this.playerPos.x -= this.playerSpeed.x * this.playerGravity }
 
-        // this.playerPos.x -= this.playerSpeed.x
+        this.playerPos.x > 50 ? this.playerPos.x -= this.playerSpeed.x : null
+
     }
 
     moveRight() {
-        if (this.playerPos.x <= 700) {
-            if (this.playerPos.y !== this.playerBaseline) {
-                this.playerPos.x += this.playerSpeed.x * this.playerGravity
-            } else { this.playerPos.x += this.playerSpeed.x * this.playerGravity }
-        }
+        this.playerPos.x <= 700 ? this.playerPos.x += this.playerSpeed.x : null
 
-        // this.playerPos.x += this.playerSpeed.x
+
+
     }
 
-    // jump() {
-    //     if (this.playerPos.y + this.playerSize.h >= this.playerBaseline) {
-    //         // this.playerPos.y -= 100
-    //         this.playerSpeed.y -= 20
-    //         console.log('saltandooo')
-
-    //     }
-    // }
     jump() {
-        if (this.playerPos.y + this.playerSize.h >= this.playerBaseline) {
-            this.playerPos.y -= 100
-            this.playerSpeed.y -= 17
-            console.log('saltandooo')
+        if (this.playerPos.y + this.playerSize.h >= 700 || this.playerPos.y + this.playerSize.h >= this.playerBaseline - 1) {
+
+            this.playerSpeed.y -= 15
+
 
         }
     }
+
+
+
+
 
     moveDown() {
-        // está en el aire
-        if (this.playerPos.y < this.playerBaseline) {
-            //le suma su velocidad en y para que baje
-            this.playerSpeed.y += this.playerGravity
+        if (this.playerPos.y < 700) {
             this.playerPos.y += this.playerSpeed.y
-            this.playerSpeed.x -= this.playerGravity
-        } else {
-            this.playerPos.y = this.playerBaseline
-            this.playerSpeed.y = 1
-            this.playerSpeed.x = 50
         }
+
+        if (this.playerPos.y + this.playerSize.h + this.playerSpeed.y < 700) {
+            this.playerSpeed.y += this.playerGravity
+        }
+        else {
+            this.playerSpeed.y = 0
+            this.playerBaseline = 700
+        }
+
     }
 
-    // moveDown() {
-    //     // if (this.playerPos.y < this.playerBaseline) 
-    //     this.playerPos.y += this.playerSpeed.y
 
-    //     if (this.playerPos.y + this.playerSize.h + this.playerSpeed.y <= this.playerBaseline) {
-    //         this.playerSpeed.y += this.playerGravity
-    //     }
-    //     else { this.playerSpeed.y = 0 }
-
-    // }
 
     lifeBar() {
 
