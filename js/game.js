@@ -242,12 +242,11 @@ const game = {
             this.framesCounter++
             this.framesCounter === 240 ? this.framesCounter = 0 : null
             this.clearAll()
+
+            //BACKGROUND
             this.background.draw()
-            //lifeBar and game over
-            if (this.player.playerLifeCounter <= 20) {
-                clearInterval(timer)
-                this.drawText('GAME OVER')
-            }
+
+
 
             //PLATFORMS
             this.platforms.forEach(elm => {
@@ -299,6 +298,11 @@ const game = {
                 elm.ballCollision()
             })
 
+            //GAME OVER
+            if (this.player.playerLifeCounter <= 20) {
+                clearInterval(timer)
+                this.drawText('GAME OVER')
+            }
 
         }, 1000 / this.FPS)
     },
